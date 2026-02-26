@@ -28,16 +28,14 @@ export class MailService {
         this.transporter = nodemailer.createTransport({
             host,
             port,
-            secure,
-            auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS,
-            },
+            secure: false,
+            auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
             requireTLS: true,
-            tls: {
-                rejectUnauthorized,
-                ...(servername ? { servername } : {}),
-            },
+            tls: { rejectUnauthorized, ...(servername ? { servername } : {}) },
+
+            connectionTimeout: 10_000,
+            greetingTimeout: 10_000,
+            socketTimeout: 15_000,
         });
     }
 
