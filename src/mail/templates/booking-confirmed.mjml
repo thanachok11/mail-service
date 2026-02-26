@@ -1,0 +1,109 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Montserrat" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" />
+    <mj-attributes>
+      <mj-all font-family="Montserrat, Arial, Helvetica, sans-serif" />
+      <mj-text color="#2b2b2b" />
+    </mj-attributes>
+    <mj-style>
+      .muted div { color:#666666 !important; line-height:22px !important; font-weight:400 !important; }
+      .meta div { color:#888888 !important; font-weight:500 !important; }
+      .fine div { color:#a09a8f !important; font-size:10px !important; line-height:16px !important; }
+      .footer-link { color:#777777; text-decoration:underline; }
+      .gradient-btn a {
+        background: linear-gradient(180deg, #c9a76a 0%, #9a7539 100%) !important;
+        box-shadow: 0 6px 20px rgba(154,117,57,0.35) !important;
+      }
+      .card-shadow > table {
+        box-shadow: 0 8px 30px rgba(0,0,0,0.04) !important;
+      }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#eeebe3">
+    <!-- Outer Wrapper -->
+    <mj-wrapper padding="48px 15px 48px 15px" background-color="#eeebe3">
+      <!-- Card Section -->
+      <mj-section css-class="card-shadow" background-color="#ffffff" border-radius="24px" padding="48px 32px 56px 32px">
+        <mj-column>
+
+          <mj-image
+              width="140px"
+              src="cid:brandlogo@cmtram"
+              alt="Logo"
+              padding="0 0 24px"
+              border="0"
+            />
+
+            <mj-text align="center" font-size="20px" font-weight="700" padding="0 0 16px">
+              Dear {{customerName}},
+            </mj-text>
+
+            <mj-text align="center" font-size="14px" css-class="muted" padding="0 0 6px">
+              Your booking for Chiang Mai Tram by Lannatique is confirmed.
+            </mj-text>
+
+            <mj-text align="center" font-size="14px" css-class="muted" padding="0 0 32px">
+              You can find your QR Code in this email attachments.
+            </mj-text>
+
+            <mj-text align="center" font-size="12px" css-class="meta" padding="0 0 6px">
+              Booking ID : {{bookingId}}
+            </mj-text>
+
+            <mj-text align="center" font-size="12px" css-class="meta" padding="0 0 40px">
+              Travel Date : {{travelDateText}}
+            </mj-text>
+
+            <mj-button
+              css-class="gradient-btn"
+              href="{{manageUrl}}"
+              align="center"
+              background-color="#c9a76a"
+              color="#ffffff"
+              font-size="16px"
+              font-weight="700"
+              border-radius="999px"
+              inner-padding="16px 36px"
+              padding="0"
+            >
+              Manage Booking
+            </mj-button>
+
+        </mj-column>
+      </mj-section>
+
+      <!-- Spacing -->
+      <mj-section padding="20px 0 0 0"><mj-column><mj-spacer height="20px" /></mj-column></mj-section>
+
+      <!-- Footer Section -->
+      <mj-section padding="0">
+        <mj-column>
+          <!-- Social Icons -->
+          <mj-social font-size="15px" icon-size="32px" mode="horizontal" padding="0 0 24px">
+            <mj-social-element src="cid:facebook@cmtram" href="#" padding="0 12px" alt="Facebook" border-radius="0"></mj-social-element>
+            <mj-social-element src="cid:x@cmtram" href="#" padding="0 12px" alt="X" border-radius="0"></mj-social-element>
+            <mj-social-element src="cid:instagram@cmtram" href="#" padding="0 12px" alt="Instagram" border-radius="0"></mj-social-element>
+          </mj-social>
+
+          <mj-text align="center" font-size="12px" color="#777777" font-weight="500" padding="0 0 8px">
+            Any questions? get in touch with us!
+          </mj-text>
+          
+          <mj-text align="center" font-size="12px" color="#777777" font-weight="500" padding="0 0 32px">
+            Website : <a href="https://www.lannatique.com" class="footer-link">www.lannatique.com</a>
+          </mj-text>
+
+          <mj-divider border-width="1px" border-style="dashed" border-color="#d6ceb8" padding="0 0 24px" width="100%" />
+
+          <mj-text align="center" css-class="fine" padding="0">
+            If you have received this communication in error, please do not forward its contents; notify the sender<br/>
+            and delete it and any attachments. This message may contain information that is confidential and<br/>
+            legally privileged. Unless you are the addressee, you may not use, copy or disclose to anyone this<br/>
+            message or any information contained within.
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

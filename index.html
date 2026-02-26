@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Booking Confirmed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="margin:0;padding:0;background-color:#eeebe3;font-family:'Montserrat', Arial, Helvetica, sans-serif;">
+
+    <!-- Outer Wrapper -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#eeebe3" style="background-color:#eeebe3;">
+        <tr>
+            <td align="center" style="padding:48px 15px;">
+
+                <!-- Card -->
+                <table width="560" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff"
+                    style="border-radius:24px;background-color:#ffffff;max-width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.04);">
+                    <tr>
+                        <td align="center" style="padding:48px 32px 56px 32px;">
+
+                            <!-- Logo -->
+                            <img src="./src/mail/templates/assets/logo.png" alt="Lannatique"
+                                style="width:140px;margin-bottom:24px;border:0;">
+
+                            <!-- Greeting -->
+                            <p style="font-size:20px;font-weight:700;color:#2b2b2b;margin:0 0 16px 0;">
+                                Dear {{customerName}},
+                            </p>
+
+                            <!-- Main Text -->
+                            <p style="font-size:14px;color:#666666;margin:0 0 6px 0;line-height:22px;font-weight:400;">
+                                Your booking for Chiang Mai Tram by Lannatique is confirmed.
+                            </p>
+                            <p style="font-size:14px;color:#666666;margin:0 0 32px 0;line-height:22px;font-weight:400;">
+                                You can find your QR Code in this email attachments.
+                            </p>
+
+                            <!-- Booking Info -->
+                            <p style="font-size:12px;color:#888888;margin:0 0 6px 0;font-weight:500;">
+                                Booking ID : {{bookingId}}
+                            </p>
+                            <p style="font-size:12px;color:#888888;margin:0 0 40px 0;font-weight:500;">
+                                Travel Date : {{travelDateText}}
+                            </p>
+
+                            <!-- Button -->
+                            <table cellpadding="0" cellspacing="0" border="0" align="center">
+                                <tr>
+                                    <td align="center"
+                                        style="border-radius:999px;background:linear-gradient(180deg, #c9a76a 0%, #9a7539 100%); box-shadow:0 6px 20px rgba(154,117,57,0.35);">
+                                        <a href="{{manageUrl}}" style="display:inline-block;padding:16px 36px;
+                              font-size:16px;font-weight:700;
+                              color:#ffffff;text-decoration:none;">
+                                            Manage Booking
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+                <!-- End Card -->
+
+                <div style="height:40px;"></div>
+
+                <!-- Social Icons -->
+                <table cellpadding="0" cellspacing="0" border="0" align="center">
+                    <tr>
+                        <td align="center" style="padding:0 12px;">
+                            <a href="#" style="text-decoration:none;">
+                                <img src="./src/mail/templates/assets/facebook.png" width="32" alt="Facebook"
+                                    style="border:0;opacity:0.85;">
+                            </a>
+                        </td>
+                        <td align="center" style="padding:0 12px;">
+                            <a href="#" style="text-decoration:none;">
+                                <img src="./src/mail/templates/assets/x.png" width="32" alt="X" style="border:0;opacity:0.85;">
+                            </a>
+                        </td>
+                        <td align="center" style="padding:0 12px;">
+                            <a href="#" style="text-decoration:none;">
+                                <img src="./src/mail/templates/assets/instagram.png" width="32" alt="Instagram"
+                                    style="border:0;opacity:0.85;">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Contact Options -->
+                <p style="font-size:12px;color:#777777;margin:24px 0 8px 0;font-weight:500;">
+                    Any questions? get in touch with us!
+                </p>
+
+                <p style="font-size:12px;color:#777777;margin:0 0 32px 0;font-weight:500;">
+                    Website :
+                    <a href="https://www.lannatique.com" style="color:#777777;text-decoration:underline;">
+                        www.lannatique.com
+                    </a>
+                </p>
+
+                <!-- Divider -->
+                <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width:100%;">
+                    <tr>
+                        <td style="border-top:1px dashed #d6ceb8;"></td>
+                    </tr>
+                </table>
+
+                <!-- Fine Print -->
+                <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width:100%;">
+                    <tr>
+                        <td align="center" style="padding:24px 10px 0 10px;">
+                            <p style="font-size:10px;color:#a09a8f;margin:0;line-height:16px;">
+                                If you have received this communication in error, please do not forward its contents;
+                                notify the sender<br>
+                                and delete it and any attachments. This message may contain information that is
+                                confidential and<br>
+                                legally privileged. Unless you are the addressee, you may not use, copy or disclose to
+                                anyone this<br>
+                                message or any information contained within.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
