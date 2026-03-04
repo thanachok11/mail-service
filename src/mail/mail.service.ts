@@ -136,9 +136,6 @@ export class MailService {
                         filename: `Ticket-QR-${index + 1}.png`,
                         content: Buffer.from(base64, "base64"),
                         contentType: "image/png",
-                        // if you want them inline instead of downloadable, use:
-                        // contentDisposition: "inline",
-                        // cid: `ticket-qr-${index}@cmtram`
                     });
                 });
             } catch (err) {

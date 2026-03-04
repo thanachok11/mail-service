@@ -51,10 +51,9 @@ export class BookingConfirmedDto {
   @MinLength(1)
   manageUrl!: string;
 
-  // แนบ QR เป็น base64 (optional)
   @IsOptional()
   @IsString()
-  qrBase64?: string; // base64 ของไฟล์ png/pdf (ไม่ต้องมี data:... ก็ได้)
+  qrBase64?: string; 
 
   @IsOptional()
   @IsString()
