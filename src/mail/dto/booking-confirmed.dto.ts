@@ -15,6 +15,22 @@ export class ReceiptItemDto {
   amount!: number;
 }
 
+export class TicketDto {
+  @IsString()
+  ticketNo!: string;
+
+  @IsOptional()
+  @IsString()
+  customerName?: string;
+
+  @IsOptional()
+  @IsString()
+  travelDate?: string;
+
+  @IsString()
+  description!: string;
+}
+
 export class BookingConfirmedDto {
   @IsEmail()
   to!: string;
@@ -66,4 +82,16 @@ export class BookingConfirmedDto {
   @IsOptional()
   @IsString()
   paymentMethod?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  ticketQrCodes?: string[];
+
+  // For PDF Tickets with detailed info
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => TicketDto)
+  tickets?: TicketDto[];
 }

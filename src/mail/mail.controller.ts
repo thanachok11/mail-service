@@ -1,7 +1,10 @@
 import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
 import { MailService } from "./mail.service";
 import { BookingConfirmedDto } from "./dto/booking-confirmed.dto";
+import { GenerateQrCodesDto } from "./dto/generate-qrcodes.dto";
+import { ResetPasswordDto } from "./dto/reset-password.dto";
 import { ApiKeyGuard } from "../common/guards/api-key.guard";
+import { generateQrCodes } from "./qrcode.util";
 
 @Controller("mail")
 export class MailController {
@@ -15,9 +18,19 @@ export class MailController {
   }
 
   @UseGuards(ApiKeyGuard)
-  @Post("receipt")
-  async sendReceipt(@Body() dto: BookingConfirmedDto) {
-    await this.mail.sendReceiptEmail(dto);
+  @Post("qrcode")
+  async generateQrCodes(@Body() dto: GenerateQrCodesDto) {
+    const qrCodes = await generateQrCodes(dto.texts);
+    return {
+      ok: true,
+      data: qrCodes,
+    };
+  }
+
+  @UseGuards(ApiKeyGuard)
+  @Post("reset-password")
+  async resetPassword(@Body() dto: ResetPasswordDto) {
+    await this.mail.sendResetPassword(dto);
     return { ok: true };
   }
 }
