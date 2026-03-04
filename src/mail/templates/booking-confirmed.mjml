@@ -48,7 +48,7 @@
             </mj-text>
 
             <mj-text align="center" font-size="12px" css-class="meta" padding="0 0 6px">
-              Booking ID : {{bookingId}}
+              Booking Ref : {{bookingId}}
             </mj-text>
 
             <mj-text align="center" font-size="12px" css-class="meta" padding="0 0 40px">
@@ -76,37 +76,7 @@
       <!-- Spacing -->
       <mj-section padding="20px 0 0 0"><mj-column><mj-spacer height="20px" /></mj-column></mj-section>
       
-      <!-- Our Product Section -->
-      <mj-section background-color="#ffffff" border-radius="24px" padding="32px 32px 40px 32px" css-class="card-shadow">
-        <mj-column>
-          <mj-text font-size="20px" font-weight="700" color="#2b2b2b" padding="0 0 16px">
-            Our Product
-          </mj-text>
-          
-          <mj-text font-size="14px" css-class="muted" padding="0 0 24px" line-height="24px">
-            Experience the cultural charm of Chiang Mai through a delightful tram ride. 
-            Enjoy local treats and historical sights all in one journey!
-          </mj-text>
 
-          <mj-button
-            css-class="gradient-btn"
-            href="https://www.lannatique.com"
-            align="left"
-            background-color="#c9a76a"
-            color="#ffffff"
-            font-size="16px"
-            font-weight="700"
-            border-radius="999px"
-            inner-padding="16px 36px"
-            padding="0"
-          >
-            Explore More
-          </mj-button>
-        </mj-column>
-      </mj-section>
-
-      <!-- Spacing -->
-      <mj-section padding="20px 0 0 0"><mj-column><mj-spacer height="20px" /></mj-column></mj-section>
 
       <!-- Footer Section -->
       <mj-section padding="0">

@@ -37,7 +37,7 @@ export function generateReceiptPdf(data: ReceiptData): Promise<Buffer> {
 
             const boxTop = 50;
             const boxLeft = 50;
-            const boxWidth = 495;
+            const boxWidth = 515;
             let cursorY = boxTop + 20;
             const marginX = boxLeft + 15;
 
@@ -64,12 +64,12 @@ export function generateReceiptPdf(data: ReceiptData): Promise<Buffer> {
             const colDesc = marginX;
             const colQty = marginX + 220;
             const colPrice = marginX + 300;
-            const colAmount = marginX + 400;
+            const colAmount = marginX + 395;
 
             doc.fontSize(11).text("Description", colDesc, cursorY, { width: 200, align: "left" });
             doc.text("Quantity", colQty, cursorY, { width: 60, align: "center" });
             doc.text("Unit Price (THB)", colPrice, cursorY, { width: 90, align: "right" });
-            doc.text("Amount (THB)", colAmount, cursorY, { width: 80, align: "right" });
+            doc.text("Amount (THB)", colAmount, cursorY, { width: 100, align: "right" });
 
             cursorY += 15;
 
@@ -85,7 +85,7 @@ export function generateReceiptPdf(data: ReceiptData): Promise<Buffer> {
                 doc.text(item.description, colDesc, cursorY, { width: 200, align: "left" });
                 doc.text(item.quantity.toString(), colQty, cursorY, { width: 60, align: "center" });
                 doc.text(item.unitPrice.toString(), colPrice, cursorY, { width: 90, align: "right" });
-                doc.text(item.amount.toString(), colAmount, cursorY, { width: 80, align: "right" });
+                doc.text(item.amount.toString(), colAmount, cursorY, { width: 100, align: "right" });
 
                 cursorY += Math.max(textHeight, 15) + 5;
             });
