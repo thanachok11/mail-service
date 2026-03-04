@@ -5,7 +5,6 @@ import mjml2html from "mjml";
 import * as fs from "fs";
 import * as path from "path";
 import { BookingConfirmedDto } from "./dto/booking-confirmed.dto";
-
 @Injectable()
 export class MailService {
     private transporter: nodemailer.Transporter;
@@ -66,34 +65,17 @@ export class MailService {
             throw new InternalServerErrorException("Template compile failed");
         }
 
-        // 2) inline logo as CID attachment
-        const logoPath = path.join(
-            process.cwd(),
-            "src/mail/templates/assets/logo.png"
-        );
-        if (!fs.existsSync(logoPath)) {
-            throw new InternalServerErrorException(
-                `logo.png not found: ${logoPath}`
-            );
-        }
+        // cid is no longer needed for logo, using direct URL
 
-        // IMPORTANT: cid ต้องตรงกับใน MJML: src="cid:brandlogo@cmtram"
-        const logoCid = "brandlogo@cmtram";
 
         const attachments: Attachment[] = [
-            {
-                filename: "logo.png",
-                path: logoPath,
-                cid: logoCid,
-                contentType: "image/png",
-                contentDisposition: "inline",
-            },
             {
                 filename: "facebook.png",
                 path: path.join(process.cwd(), "src/mail/templates/assets/facebook.png"),
                 cid: "facebook@cmtram",
                 contentType: "image/png",
                 contentDisposition: "inline",
+                headers: { "Content-ID": `<facebook@cmtram>`, "X-Attachment-Id": "facebook@cmtram" }
             },
             {
                 filename: "x.png",
@@ -101,6 +83,7 @@ export class MailService {
                 cid: "x@cmtram",
                 contentType: "image/png",
                 contentDisposition: "inline",
+                headers: { "Content-ID": `<x@cmtram>`, "X-Attachment-Id": "x@cmtram" }
             },
             {
                 filename: "instagram.png",
@@ -108,6 +91,7 @@ export class MailService {
                 cid: "instagram@cmtram",
                 contentType: "image/png",
                 contentDisposition: "inline",
+                headers: { "Content-ID": `<instagram@cmtram>`, "X-Attachment-Id": "instagram@cmtram" }
             },
         ];
 
@@ -130,6 +114,72 @@ export class MailService {
                 from,
                 to: payload.to,
                 subject: `Your booking is confirmed (${payload.bookingId})`,
+                html: compiled.html,
+                attachments,
+            });
+        } catch (e: any) {
+            throw new InternalServerErrorException(
+                `Send mail failed: ${e?.message || "unknown"}`
+            );
+        }
+    }
+
+    async sendReceiptEmail(payload: BookingConfirmedDto) {
+        // 1) compile MJML -> HTML
+        const mjmlPath = path.join(
+            process.cwd(),
+            "src/mail/templates/receipt.mjml"
+        );
+        if (!fs.existsSync(mjmlPath)) {
+            throw new InternalServerErrorException(
+                `Template not found: ${mjmlPath}`
+            );
+        }
+
+        const mjml = fs.readFileSync(mjmlPath, "utf8");
+
+        // Prepare table rows
+        let receiptTableRows = "";
+        if (payload.receiptItems) {
+            receiptTableRows = payload.receiptItems.map(item => {
+                const desc = escapeHtml(item.description).replace(/\\n/g, "<br/>");
+                return `
+                <tr>
+                    <td>${desc}</td>
+                    <td class="text-center">${item.quantity}</td>
+                    <td class="text-right">${item.unitPrice.toFixed(2)}</td>
+                    <td class="text-right">${item.amount.toFixed(2)}</td>
+                </tr>
+                `;
+            }).join("");
+        }
+
+        const compiled = mjml2html(
+            mjml
+                .replaceAll("{{receiptNo}}", escapeHtml(payload.receiptNo || payload.bookingId))
+                .replaceAll("{{receiptDate}}", escapeHtml(payload.receiptDate || payload.travelDateText))
+                .replaceAll("{{receiptTableRows}}", receiptTableRows)
+                .replaceAll("{{totalAmount}}", (payload.totalAmount || 0).toFixed(2))
+                .replaceAll("{{paymentMethod}}", escapeHtml(payload.paymentMethod || "Credit Card / Transfer")),
+            { validationLevel: "soft" }
+        );
+
+        if (!compiled.html) {
+            throw new InternalServerErrorException("Template compile failed");
+        }
+
+        // 2) no inline attachments needed for receipt
+        const attachments: Attachment[] = [];
+
+        // 3) send email
+        const from = process.env.MAIL_FROM || process.env.MAIL_USER;
+        if (!from) throw new InternalServerErrorException("MAIL_FROM or MAIL_USER is required");
+
+        try {
+            await this.transporter.sendMail({
+                from,
+                to: payload.to,
+                subject: `Receipt for your booking (${payload.receiptNo || payload.bookingId})`,
                 html: compiled.html,
                 attachments,
             });

@@ -1,0 +1,100 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Arial" href="https://fonts.googleapis.com/css2?family=Arial:wght@400;600;700&amp;display=swap" />
+    <mj-attributes>
+      <mj-all font-family="Arial, Helvetica, sans-serif" color="#000000" font-size="14px" line-height="1.5" />
+    </mj-attributes>
+    <mj-style>
+      .receipt-box {
+        border: 2px solid #000000 !important;
+        padding: 20px !important;
+      }
+      .receipt-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+      .receipt-table th {
+        text-align: left;
+        padding: 4px 4px;
+        border-bottom: 2px solid #000000;
+        border-top: 2px solid #000000;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .receipt-table th.text-right { text-align: right; }
+      .receipt-table th.text-center { text-align: center; }
+      
+      .receipt-table td {
+        padding: 4px 4px;
+        font-size: 14px;
+        vertical-align: top;
+      }
+      .receipt-table td.text-right { text-align: right; }
+      .receipt-table td.text-center { text-align: center; }
+      
+      .receipt-icon {
+        width: 20px;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#ffffff">
+    <mj-section padding="20px">
+      <mj-column css-class="receipt-box" border="2px solid #000000" padding="20px 20px 10px 20px">
+        
+        <mj-text padding="0 0 10px 0">
+          Chaingmai Tram by Lannatique
+        </mj-text>
+
+        <mj-text padding="0 0 10px 0">
+          Tax ID : 0105565154315
+        </mj-text>
+
+        <mj-text padding="0 0 10px 0">
+          🧾 RECEIPT
+        </mj-text>
+
+        <mj-text padding="0 0 10px 0">
+          Receipt No.: {{receiptNo}}
+        </mj-text>
+
+        <mj-text padding="0 0 5px 0">
+          Date: {{receiptDate}}
+        </mj-text>
+
+        <mj-text padding="0">
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th style="width: 40%;">Description</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-right">Unit Price (THB)</th>
+                <th class="text-right">Amount (THB)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{receiptTableRows}}
+            </tbody>
+          </table>
+        </mj-text>
+
+        <mj-text padding="5px 0 10px 0">
+          Total Amount: {{totalAmount}} THB
+        </mj-text>
+
+        <mj-text padding="0 0 10px 0">
+          Payment Method:{{paymentMethod}}
+        </mj-text>
+
+        <mj-text padding="0 0 10px 0">
+          Thank you for Using Chaingmai Tram by Lannatique
+        </mj-text>
+
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

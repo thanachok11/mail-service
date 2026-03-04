@@ -5,12 +5,19 @@ import { ApiKeyGuard } from "../common/guards/api-key.guard";
 
 @Controller("mail")
 export class MailController {
-  constructor(private mail: MailService) {}
+  constructor(private mail: MailService) { }
 
   @UseGuards(ApiKeyGuard)
   @Post("booking-confirmed")
   async bookingConfirmed(@Body() dto: BookingConfirmedDto) {
     await this.mail.sendBookingConfirmed(dto);
+    return { ok: true };
+  }
+
+  @UseGuards(ApiKeyGuard)
+  @Post("receipt")
+  async sendReceipt(@Body() dto: BookingConfirmedDto) {
+    await this.mail.sendReceiptEmail(dto);
     return { ok: true };
   }
 }
